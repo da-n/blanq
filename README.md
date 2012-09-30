@@ -1,6 +1,6 @@
-# blanq
+![blanq](https://raw.github.com/danieldavidson/blanq/master/img/logo.png)
 
-WordPress theme that uses Twitter Bootstrap. Intended for custom theme development. [Bootswatch](https://github.com/thomaspark/bootswatch) compatible. 
+blanq is a WordPress theme that uses Twitter Bootstrap. Intended for custom theme development. [Bootswatch](https://github.com/thomaspark/bootswatch) compatible. 
 
 ## Status
 
