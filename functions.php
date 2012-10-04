@@ -6,6 +6,14 @@
  * @since blanq 1.0
  */
 
+function blanq_version()
+{
+  /**
+   * Current theme version.
+   */
+  return '0.2.0'; 
+} 
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
@@ -24,8 +32,8 @@ if ( ! function_exists( 'blanq_setup' ) ):
  *
  * @since blanq 1.0
  */
-function blanq_setup() {
-
+function blanq_setup() 
+{
   /**
    * Custom template tags for this theme.
    */
@@ -89,7 +97,8 @@ add_action( 'after_setup_theme', 'blanq_setup' );
  * We use a class which extends Walker_Nav_Menu to create Twitter Bootstrap toolkit Dropdown menus. 
  * The class can be found in inc/classes.php. 
  */
-function blanq_register_custom_menu() {
+function blanq_register_custom_menu() 
+{
   register_nav_menu( 'blanq_twitter_navbar', __( 'Twitter Navbar' ) );
 
   if ( isset( $_GET['activated'] ) && $_GET['activated'] ) {
@@ -113,7 +122,8 @@ add_action( 'after_setup_theme', 'blanq_register_custom_menu' );
  *
  * @since blanq 1.0
  */
-function blanq_widgets_init() {
+function blanq_widgets_init() 
+{
   register_sidebar( array(
     'name' => __( 'Sidebar', 'blanq' ),
     'id' => 'sidebar-1',
@@ -130,26 +140,32 @@ add_action( 'widgets_init', 'blanq_widgets_init' );
 /**
  * Enqueue scripts and styles
  */
-function blanq_scripts() {
-  wp_enqueue_style( 'blanq', get_template_directory_uri() . '/css/blanq.css', array(), '1.0.0' );
-  
+function blanq_scripts() 
+{
   wp_deregister_script( 'jquery' ); // Unregister WordPress jQuery
   wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', 'jquery', '1.8.1', true); // load CDN jQuery
   wp_enqueue_script('jquery');
   
-  wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '2.1.1', true ); 
+  wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap/js/bootstrap.min.js', array( 'jquery' ), '2.1.1', true ); 
   
-  wp_enqueue_script( 'blanq', get_template_directory_uri() . '/js/blanq.min.js', array( 'jquery' ), '1.0.0', true );  
+  wp_enqueue_script( 'blanq', get_template_directory_uri() . '/js/blanq.js', array( 'jquery' ), blanq_version(), true );  
 
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
     wp_enqueue_script( 'comment-reply' );
   }
 
   if ( is_singular() && wp_attachment_is_image() ) {
-    wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
+    wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/lib/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
   }
 }
 add_action( 'wp_enqueue_scripts', 'blanq_scripts' );
+
+function blanq_styles()  
+{ 
+  wp_register_style( 'blanq', get_template_directory_uri() . '/css/blanq.css', array(), blanq_version() );
+  wp_enqueue_style( 'blanq' );
+}
+add_action('wp_enqueue_scripts', 'blanq_styles');
 
 /**
  * Implement the Custom Header feature
