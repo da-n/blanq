@@ -10,15 +10,16 @@
 ?>
 
 
-<footer id="colophon" class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="site-info">
-      <?php do_action( 'blanq_credits' ); ?>
-      <a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'blanq' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'blanq' ), 'WordPress' ); ?></a>
-      <span class="sep"> | </span>
-      <?php printf( __( 'Theme: %1$s', 'blanq' ), '<a href="https://github.com/danieldavidson/blanq">blanq</a>', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
-    </div><!-- .site-info -->
 <footer id="colophon" class="container site-footer" role="contentinfo">
+  <div class="row">
+    <div class="span12">
+      <div class="box site-info">
+        <?php do_action( 'blanq_credits' ); ?>
+        <a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'blanq' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'blanq' ), 'WordPress' ); ?></a>
+        <span class="sep"> | </span>
+        <?php printf( __( 'Theme: %1$s', 'blanq' ), '<a href="https://github.com/danieldavidson/blanq">blanq</a>', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
+      </div><!-- .site-info -->
+    </div><!-- /row -->
   </div><!-- /container -->
 </footer><!-- #colophon .site-footer -->
 
