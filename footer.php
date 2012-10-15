@@ -18,6 +18,7 @@
       <span class="sep"> | </span>
       <?php printf( __( 'Theme: %1$s', 'blanq' ), '<a href="https://github.com/danieldavidson/blanq">blanq</a>', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
     </div><!-- .site-info -->
+<footer id="colophon" class="container site-footer" role="contentinfo">
   </div><!-- /container -->
 </footer><!-- #colophon .site-footer -->
 

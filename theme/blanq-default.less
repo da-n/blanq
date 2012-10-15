@@ -1,10 +1,6 @@
 @import "../lib/bootstrap/less/bootstrap.less"; // bootstrap files
 @import "../lib/bootstrap/less/responsive.less"; // bootstrap responsive files
 
-/*!
- * Blanq v0.2.0
- */
-
 //
 // Variables
 // --------------------------------------------------
@@ -38,8 +34,8 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @grayLighter;
-@textColor:             @grayDarker;
+// @bodyBackground:        @white;
+// @textColor:             @grayDark;
 
 
 // Links
@@ -111,13 +107,13 @@
 // -------------------------
 // @navbarCollapseWidth:             979px;
 
-@navbarHeight:                    80px;
+// @navbarHeight:                    80px;
 // @navbarBackgroundHighlight:       #ffffff;
-@navbarBackground:                @white;
-@navbarBorder:                    @white;
+// @navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+// @navbarBorder:                    darken(@navbarBackground, 12%);
 
-@navbarText:                      @gray;
-@navbarLinkColor:                 @gray;
+// @navbarText:                      #777;
+// @navbarLinkColor:                 #777;
 // @navbarLinkColorHover:            @grayDark;
 // @navbarLinkColorActive:           @gray;
 // @navbarLinkBackgroundHover:       transparent;
@@ -144,13 +140,6 @@
 
 // @navbarInverseBrandColor:                @navbarInverseLinkColor;
 
-.navbar-inner {
-  .box-shadow(0 0 0 rgba(0,0,0,.065));
-}
-.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
-border-width: 0 0 0;
-}
-
 
 // Pagination
 // -------------------------
@@ -167,7 +156,13 @@ border-width: 0 0 0;
 
 // Footer
 // -------------------------
-
+.site-footer {
+  padding: 4em 0;
+  margin-top: 2em;
+  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+  border-top: 1px solid @navbarBorder;
+  .box-shadow(0 1px 4px rgba(0,0,0,.065));
+}
 
 // Form states and alerts
 // -------------------------
@@ -184,41 +179,13 @@ border-width: 0 0 0;
 // Fluid grid
 // -------------------------
 
-// CUSTOM
-// --------------------------------------------------
-
-.box {
-  background: @white;
-}
-
-// Responsive
+// Responsive styles
 // -------------------------
 
 // Desktop
 @media (min-width: 979px) {
   
-  // spacing added to the navbarHeight
-  body {
-    padding-top: @navbarHeight+30px; 
-  }
-  
-  .box {
-    padding: 30px;
-    margin-bottom: 30px;
-    background: @white;
-  }
-  
-  .widget {
-    padding: 30px;
-    margin-bottom: 30px;
-    background: @white;
-  }
-  
-}
-
-// Large desktop
-@media (min-width: 979px) and (max-width: 1200px) {
-  
+  // 20px added to the navbarHeight
   body {
     padding-top: @navbarHeight+20px; 
   }
@@ -226,21 +193,7 @@ border-width: 0 0 0;
 }
 
 // Large desktop
-@media (max-width: 1200px) {
-  
-  .box {
-    padding: 20px;
-    margin-bottom: 20px;
-    background: @white;
-  }
-  
-  .widget {
-    padding: 20px;
-    margin-bottom: 20px;
-    background: @white;
-  }
-  
-}
+// @media (min-width: 1200px) {}
 
 // Portrait tablet to landscape and desktop
 // @media (min-width: 768px) and (max-width: 979px) {}
