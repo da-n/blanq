@@ -146,7 +146,7 @@ function blanq_scripts()
   wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', 'jquery', '1.8.1', true); // load CDN jQuery
   wp_enqueue_script('jquery');
   
-  wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap/js/bootstrap.min.js', array( 'jquery' ), '2.1.1', true ); 
+  // wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap/js/bootstrap.min.js', array( 'jquery' ), '2.1.1', true ); 
   
   wp_enqueue_script( 'blanq', get_template_directory_uri() . '/js/blanq.js', array( 'jquery' ), blanq_version(), true );  
 

@@ -4,6 +4,3 @@
 [submodule "lib/bootstrap"]
 	path = lib/bootstrap
 	url = git://github.com/twitter/bootstrap.git
-[submodule "lib/modernizer"]
-	path = lib/modernizer
-	url = git://github.com/Modernizr/Modernizr.git
