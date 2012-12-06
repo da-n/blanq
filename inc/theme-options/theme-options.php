@@ -70,38 +70,6 @@ function blanq_theme_options_add_page() {
 add_action( 'admin_menu', 'blanq_theme_options_add_page' );
 
 /**
- * Returns the options array for blanq.
- *
- * @since blanq 1.0
- */
-function blanq_get_theme_options() {
-	$saved = (array) get_option( 'blanq_theme_options' );
-	$defaults = array(
-	  'custom_logo'     			=> '',
-	);
-
-	$defaults = apply_filters( 'blanq_default_theme_options', $defaults );
-
-	$options = wp_parse_args( $saved, $defaults );
-	$options = array_intersect_key( $options, $defaults );
-
-	return $options;
-}
-
-/**
- * Renders the custom logo text input setting field.
- */
-function blanq_settings_field_custom_logo() {
-	$options = blanq_get_theme_options();
-	?>
-	<h3>Custom Navbar Logo</h3>
-	<p><strong>Note: this feature is currently disabled.</strong></p>
-	<input type="text" name="blanq_theme_options[custom_logo]" id="custom-logo" value="<?php echo esc_attr( $options['custom_logo'] ); ?>" />
-	<label class="description" for="custom-logo"><?php _e( 'Enter path to custom logo.', 'blanq' ); ?></label>
-	<?php
-}
-
-/**
  * Renders the Theme Options administration screen.
  *
  * @since blanq 1.0
@@ -112,35 +80,7 @@ function blanq_theme_options_render_page() {
 		<?php screen_icon(); ?>
 		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
 		<h2><?php printf( __( '%s Theme Options', 'blanq' ), $theme_name ); ?></h2>
-		<?php settings_errors(); ?>
-		<form method="post" action="options.php">
-			<?php
-				settings_fields( 'blanq_options' );
-				do_settings_sections( 'theme_options' );
-				submit_button();
-			?>
-		</form>
+		<p>There are no options for this theme.</p>
 	</div>
 	<?php
-}
-
-/**
- * Sanitize and validate form input. Accepts an array, return a sanitized array.
- *
- * @see blanq_theme_options_init()
- * @todo set up Reset Options action
- *
- * @param array $input Unknown values.
- * @return array Sanitized theme options ready to be stored in the database.
- *
- * @since blanq 1.0
- */
-function blanq_theme_options_validate( $input ) {
-	$output = array();
-
-	// The sample text input must be safe text with no HTML tags
-	if ( isset( $input['custom_logo'] ) && ! empty( $input['custom_logo'] ) )
-		$output['custom_logo'] = wp_filter_nohtml_kses( $input['custom_logo'] );
-
-	return apply_filters( 'blanq_theme_options_validate', $output, $input );
 }
