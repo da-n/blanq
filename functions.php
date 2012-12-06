@@ -5,22 +5,13 @@
  * @package blanq
  * @since blanq 1.0
  */
-
 function blanq_version()
 {
   /**
    * Current theme version.
    */
-  return '0.2.0'; 
+  return '0.3.0'; 
 } 
-
-/**
- * Set the content width based on the theme's design and stylesheet.
- *
- * @since blanq 1.0
- */
-if ( ! isset( $content_width ) )
-  $content_width = 640; /* pixels */
 
 if ( ! function_exists( 'blanq_setup' ) ):
 /**
@@ -45,6 +36,12 @@ function blanq_setup()
   require( get_template_directory() . '/inc/tweaks.php' );
 
   /**
+   * Custom Metaboxes and Fields for WordPress
+   * https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
+   */
+  require( get_template_directory() . '/lib/metaboxes/init.php' );
+
+  /**
    * Custom Theme Options
    */
   require( get_template_directory() . '/inc/theme-options/theme-options.php' );
@@ -57,8 +54,6 @@ function blanq_setup()
   /**
    * Make theme available for translation
    * Translations can be filed in the /languages/ directory
-   * If you're building a theme based on blanq, use a find and replace
-   * to change 'blanq' to the name of your theme in all the template files
    */
   load_theme_textdomain( 'blanq', get_template_directory() . '/languages' );
 
@@ -96,21 +91,23 @@ add_action( 'after_setup_theme', 'blanq_setup' );
  *
  * We use a class which extends Walker_Nav_Menu to create Twitter Bootstrap toolkit Dropdown menus. 
  * The class can be found in inc/classes.php. 
+ *
+ * @since blanq 1.0
  */
 function blanq_register_custom_menu() 
 {
-  register_nav_menu( 'blanq_twitter_navbar', __( 'Twitter Navbar' ) );
+  register_nav_menu( 'blanq_navbar', __( 'Navbar' ) );
 
   if ( isset( $_GET['activated'] ) && $_GET['activated'] ) {
-    if ( !is_nav_menu( 'Twitter Navbar' ) ) {
-      $menu_id = wp_create_nav_menu( 'Twitter Navbar' );
+    if ( !is_nav_menu( 'Navbar' ) ) {
+      $menu_id = wp_create_nav_menu( 'Navbar' );
 
       $menu_navbar = array( 'menu-item-type' => 'custom', 'menu-item-url' => get_home_url('/'),'menu-item-title' => 'Home', 'menu-item-attr-title' => 'Home', 'menu-item-status' => 'publish' ); // thanks to Melanie Karlik for adapting this to auto-publish http://www.karlikdesign.com/
 
       wp_update_nav_menu_item( $menu_id, 0, $menu_navbar );
 
       set_theme_mod( 'nav_menu_locations', array(
-       'blanq_twitter_navbar' => $menu_id,
+       'blanq_navbar' => $menu_id,
       ) );
     }
   }
@@ -125,7 +122,7 @@ add_action( 'after_setup_theme', 'blanq_register_custom_menu' );
 function blanq_widgets_init() 
 {
   register_sidebar( array(
-    'name' => __( 'Sidebar', 'blanq' ),
+    'name' => __( 'Sidebar', 'sidebar' ),
     'id' => 'sidebar-1',
     'description' => 'This sidebar is a general sidebar shown on blog pages, archive pages, search.',
     'class' => 'well',
@@ -138,7 +135,9 @@ function blanq_widgets_init()
 add_action( 'widgets_init', 'blanq_widgets_init' );
 
 /**
- * Enqueue scripts and styles
+ * Enqueue JavaScript
+ *
+ * @since blanq 1.0
  */
 function blanq_scripts() 
 {
@@ -146,18 +145,19 @@ function blanq_scripts()
   wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', 'jquery', '1.8.1', true); // load CDN jQuery
   wp_enqueue_script('jquery');
   
-  wp_enqueue_script( 'blanq', get_template_directory_uri() . '/js/blanq.js', array(), blanq_version('1.0'), true );  
+  wp_enqueue_script( 'blanq', get_template_directory_uri() . '/js/blanq.js', array(), blanq_version(), true );  
 
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
     wp_enqueue_script( 'comment-reply' );
   }
-
-  if ( is_singular() && wp_attachment_is_image() ) {
-    wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/lib/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-  }
 }
 add_action( 'wp_enqueue_scripts', 'blanq_scripts' );
 
+/**
+ * Enqueue CSS
+ *
+ * @since blanq 1.0
+ */
 function blanq_styles()  
 { 
   wp_register_style( 'blanq', get_template_directory_uri() . '/css/blanq.css', array(), blanq_version() );
@@ -166,35 +166,9 @@ function blanq_styles()
 add_action('wp_enqueue_scripts', 'blanq_styles');
 
 /**
- * Implement the Custom Header feature
+ * Remove default actions.
+ *
+ * @since blanq 1.0
  */
-require( get_template_directory() . '/inc/custom-header.php' );
-
-/**
- * Remove Actions. Comment/uncomment as needed.
- */
-remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
-remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-remove_action( 'wp_head', 'index_rel_link' ); // index link
-remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
-remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
-remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head',10, 0 );
-remove_action( 'wp_head', 'rel_canonical');
-remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
-// remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
-// remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
-
-/**
- * Remove meta boxes from wordpress dashboard for all users, do normal users really care about plugins and wordpress news?
- */
-function blanq_remove_dashboard_widgets()
-{
-    global $wp_meta_boxes;
-    unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_primary'] );
-    unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary'] );
-    unset( $wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins'] );
-}
-add_action('wp_dashboard_setup', 'blanq_remove_dashboard_widgets' );
+remove_action( 'wp_head', 'wlwmanifest_link' ); // Remove link to Windows Live Writer manifest file.
+remove_action( 'wp_head', 'wp_generator' ); // Remove WP version for security.
