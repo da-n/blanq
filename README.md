@@ -6,6 +6,13 @@ WordPress theme that uses Twitter Bootstrap. Intended for custom theme developme
 
 Alpha, do not use in production.
 
+## Usage
+
+#### Command Line
+
+Requires LESS.js - CSS compile example using less.js `lessc --yui-compres blanq/blanq.less > css/blanq.css`
+Concatinate and Minify JavaScript 
+
 ## Attribution
 
 **Built with the following components/tools/libraries/frameworks:**
