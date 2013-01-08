@@ -8,17 +8,41 @@ Alpha, do not use in production.
 
 ## Usage
 
-#### Command Line
+It is recommened to disable "Show Toolbar when viewing site" under `Your Profile`.
 
-Requires LESS.js - CSS compile example using less.js `lessc --yui-compres blanq/blanq.less > css/blanq.css`
-Concatinate and Minify JavaScript 
+#### Makefile
 
-## Attribution
+You will need at least the following to build the makefile
 
-**Built with the following components/tools/libraries/frameworks:**
+* jshint
+* less
+* uglifyjs
 
-[_s (underscores)](http://underscores.me/), [Twitter Bootstrap](http://twitter.github.com/bootstrap/), [jQuery](http://jquery.com/), [Modernizr](https://github.com/Modernizr/Modernizr), [Normalize](https://github.com/necolas/normalize.css), [Less](https://github.com/cloudhead/less.js).
+To install using [npm](https://npmjs.org/)
 
-**Special thanks:**
+`npm install jshint -g
+npm install less -g
+npm install uglify-js -g`
 
-[Twenty Eleven by the WordPress team](http://wordpress.org/). [Extended Walker class](https://gist.github.com/3765640/e2e7d1c7bf7478c1fc0ebf443878f9c660f195d3) by [Emanuele Tessore](https://github.com/setola) ([forked](https://gist.github.com/1597994) from [John Megahan](https://github.com/johnmegahan)). [Default Custom Menu](http://theme.it/quick-tip-how-to-generate-a-default-custom-menu/) technique by [Jason Schuller](http://twitter.com/jschuller) (with [modification](http://theme.it/quick-tip-how-to-generate-a-default-custom-menu/#comment-392) from [Melanie Karlik](http://www.karlikdesign.com/)). 
+Then just run `make` from within the theme directory.
+
+## Acknowledgments
+
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
+* [_s (underscores)](http://underscores.me/)
+* [Twenty Eleven by the WordPress team](http://wordpress.org/)
+* [Extended Walker class](https://gist.github.com/3765640/e2e7d1c7bf7478c1fc0ebf443878f9c660f195d3) by [Emanuele Tessore](https://github.com/setola) ([forked](https://gist.github.com/1597994) from [John Megahan](https://github.com/johnmegahan))
+* [Default Custom Menu](http://theme.it/quick-tip-how-to-generate-a-default-custom-menu/) technique by [Jason Schuller](http://twitter.com/jschuller) (with [modification](http://theme.it/quick-tip-how-to-generate-a-default-custom-menu/#comment-392) from [Melanie Karlik](http://www.karlikdesign.com/))
+* [jQuery](http://jquery.com/)
+* [Modernizr](https://github.com/Modernizr/Modernizr)
+* [Normalize](https://github.com/necolas/normalize.css)
+* [Less](https://github.com/cloudhead/less.js)
+
+## Credits
+
+This plugin is built and maintained by [Daniel Davidson](https://github.com/da-n/)
+
+## Changelog
+
+#### 1.0
+* Initial release

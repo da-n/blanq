@@ -1,30 +1,29 @@
-BLANQ = ./css/blanq.css
-BLANQ_LESS = ./less/blanq.less
-BOOSTRAP_JS = ./lib/bootstrap/js/
+THEME_NAME = blanq
+THEME = blanq
+CSS = ./css/${THEME}.css
+LESS = ./css/${THEME}.less
+BOOSTRAP = ./lib/bootstrap/
 DATE=$(shell date +%I:%M%p)
-HR = --------------------------------------------------
+OK_STRING=[OK]
+HR=--------------------------------------------------
 
 #
-# BUILD BLANQ
+## BUILD THEME
 #
 
 build:
-	@echo "\n${HR}"
-	@echo "Building Blanq..."
+	@echo ""
+	@echo "Building ${THEME_NAME}..."
 	@echo "${HR}"
-	@jshint js/blanq-custom.js --config js/.jshintrc
-	@echo "Running JSHint on custom javascript...        Done"
-	@lessc --yui-compress ${BLANQ_LESS} > ${BLANQ}
-	@echo "Compiling LESS with YUI Compressor...         Done"
-	@cat ${BOOSTRAP_JS}bootstrap-transition.js ${BOOSTRAP_JS}bootstrap-alert.js ${BOOSTRAP_JS}bootstrap-button.js ${BOOSTRAP_JS}bootstrap-carousel.js ${BOOSTRAP_JS}bootstrap-collapse.js ${BOOSTRAP_JS}bootstrap-dropdown.js ${BOOSTRAP_JS}bootstrap-modal.js ${BOOSTRAP_JS}bootstrap-tooltip.js ${BOOSTRAP_JS}bootstrap-popover.js ${BOOSTRAP_JS}bootstrap-scrollspy.js ${BOOSTRAP_JS}bootstrap-tab.js ${BOOSTRAP_JS}bootstrap-typeahead.js ${BOOSTRAP_JS}bootstrap-affix.js > js/bootstrap.js
-	@cat js/bootstrap.js js/blanq-custom.js > js/blanq.tmp.js
-	@uglifyjs -o js/blanq.js js/blanq.tmp.js
-	@rm js/bootstrap.js js/blanq.tmp.js
-	@echo "Compiling and minifying javascript...         Done"
+	@jshint ./js/${THEME}.js --config ./js/.jshintrc
+	@echo "Running JSHint on javascript...               ${OK_STRING}"
+	@lessc --yui-compress ${LESS} > ${CSS}
+	@echo "Compiling LESS with YUI Compressor...         ${OK_STRING}"
+	@cat ${BOOSTRAP}js/bootstrap-transition.js ${BOOSTRAP}js/bootstrap-alert.js ${BOOSTRAP}js/bootstrap-button.js ${BOOSTRAP}js/bootstrap-carousel.js ${BOOSTRAP}js/bootstrap-collapse.js ${BOOSTRAP}js/bootstrap-dropdown.js ${BOOSTRAP}js/bootstrap-modal.js ${BOOSTRAP}js/bootstrap-tooltip.js ${BOOSTRAP}js/bootstrap-popover.js ${BOOSTRAP}js/bootstrap-scrollspy.js ${BOOSTRAP}js/bootstrap-tab.js ${BOOSTRAP}js/bootstrap-typeahead.js ${BOOSTRAP}js/bootstrap-affix.js > js/bootstrap.js
+	@cat js/bootstrap.js js/${THEME}.js > js/${THEME}.tmp.js
+	@uglifyjs -o js/${THEME}.min.js js/${THEME}.tmp.js
+	@rm js/bootstrap.js js/${THEME}.tmp.js
+	@echo "Compiling and minifying javascript...         ${OK_STRING}"
 	@echo "${HR}"
-	@echo "BLANQ successfully built at ${DATE}."
-	@echo "\n"
-
-watch:
-	echo "Watching less files..."; \
-	watchr -e 'watch("less/.*\.less$") { system "make" }'
+	@echo "${THEME_NAME} successfully built at ${DATE}."
+	@echo ""
