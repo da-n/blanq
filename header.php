@@ -60,7 +60,7 @@ $blanq_options = get_option( 'blanq_options', $blanq_options );
         if (function_exists('blanq_bootstrap_nav')) {
           blanq_bootstrap_nav(array(
             'theme_location' => 'top-bar',
-            'depth' => 1,
+            'depth' => 0,
             'container' => false,
             'container_class' => 'navbar',
             'menu_class' => 'nav'
