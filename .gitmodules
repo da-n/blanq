@@ -1,6 +1,0 @@
-[submodule "lib/metaboxes"]
-	path = lib/metaboxes
-	url = git://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress.git
-[submodule "lib/bootstrap"]
-	path = lib/bootstrap
-	url = git://github.com/twitter/bootstrap.git
