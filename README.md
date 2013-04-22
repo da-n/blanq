@@ -4,7 +4,7 @@ WordPress theme that uses Twitter Bootstrap. Intended for custom theme developme
 
 ## Status
 
-Alpha, do not use in production.
+Alpha, not recommended for use in production.
 
 #### Makefile
 
@@ -36,7 +36,7 @@ Then just run `make` from within the theme directory.
 
 ## Credits
 
-This plugin is built and maintained by [Daniel Davidson](https://github.com/da-n/)
+This plugin is built and maintained by [da-n](https://github.com/da-n/). Contributions are very welcome.
 
 ## ToDo
 
