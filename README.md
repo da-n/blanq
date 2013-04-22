@@ -1,14 +1,10 @@
 # blanq
 
-WordPress theme that uses Twitter Bootstrap. Intended for custom theme development. [Bootswatch](https://github.com/thomaspark/bootswatch) compatible. 
+WordPress theme that uses Twitter Bootstrap. Intended for custom theme development. [Bootswatch](https://github.com/thomaspark/bootswatch) compatible.
 
 ## Status
 
 Alpha, do not use in production.
-
-## Usage
-
-It is recommened to disable "Show Toolbar when viewing site" under `Your Profile`.
 
 #### Makefile
 
@@ -42,7 +38,17 @@ Then just run `make` from within the theme directory.
 
 This plugin is built and maintained by [Daniel Davidson](https://github.com/da-n/)
 
+## ToDo
+
+* Check all views are Bootstrap compatible, feature parity with default themes.
+* Use mixins so that default Bootstrap classes are not needed, to make it more semantic.
+* Add a basic options page which has options for navbar, appearance etc.
+* See if it is feasible to have a select option for Bootswatch themes.
+
 ## Changelog
 
-#### 1.0
+#### 0.2.0
+* Updated readme.
+
+#### 0.0.1
 * Initial release
